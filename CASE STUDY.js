@@ -19,7 +19,7 @@ window.addEventListener("mousemove",
 function Barriers() {
     this.x = innerWidth - innerWidth / 2 - 200;
     this.y = innerHeight - 50;
-    this.length = 288;
+    this.length = 322;
     this.thickness = 5;
     this.draw = function () {
         ctx.beginPath();
@@ -81,7 +81,7 @@ function Balls(x, y, dx, dy, radius) {
 };
 
 //tao 1 qua bong
-let ballNum1 = new Balls(100, 100, 25, 25, 22);
+let ballNum1 = new Balls(100, 100, 20, 20, 22);
 
 function gameOver() {
     if (barrier.y <= ballNum1.y) {
