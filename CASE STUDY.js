@@ -12,7 +12,6 @@ window.addEventListener("mousemove",
     function (event) {
         mouse.x = event.x;
         mouse.y = event.y;
-        console.log(mouse)
     });
 
 // tao lop thanh chan
@@ -39,6 +38,10 @@ function Barriers() {
 // tao 1 thanh chan
 let barrier = new Barriers();
 
+//tao 1 mang mau
+let color = ['#C50023', '#F1AF00', '#5BBD2B', '#00B2BF', '#A2007C'];
+
+
 //tao lop bong
 function Balls(x, y, dx, dy, radius) {
     this.x = x;
@@ -56,7 +59,6 @@ function Balls(x, y, dx, dy, radius) {
         ctx.fillStyle = 'red';
         ctx.fill();
     };
-
 
     //xu li tinh huong cua qua bong
     this.update = function () {
@@ -81,15 +83,15 @@ function Balls(x, y, dx, dy, radius) {
 };
 
 //tao 1 qua bong
-let ballNum1 = new Balls(100, 100, 20, 20, 22);
+let ballNum1 = new Balls(100, 100, 8, 8, 22);
 
 function gameOver() {
     if (barrier.y <= ballNum1.y) {
         cancelAnimationFrame(id);
         ctx.beginPath();
-        ctx.font = "100px Arial";
+        ctx.font = "50px Arial";
         ctx.fillStyle = "purple";
-        ctx.fillText("Game OVER", innerWidth / 2 - 366, innerHeight / 2);
+        ctx.fillText("Gà vậy luôn :C", innerWidth / 2 - 200, innerHeight / 3);
         ctx.fill();
 
     }
