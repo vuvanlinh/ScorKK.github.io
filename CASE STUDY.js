@@ -4,6 +4,8 @@ canvas.height = window.innerHeight;
 let ctx = canvas.getContext("2d");
 let score = 0;
 
+let playerName = prompt("Enter your name : ");
+
 let mouse = {
     x: undefined,
     y: undefined
@@ -19,7 +21,7 @@ function Barriers() {
     this.x = innerWidth - innerWidth / 2 - 200;
     this.y = innerHeight - 50;
     this.length = 322;
-    this.thickness = 5;
+    this.thickness = 25;
     this.draw = function () {
         ctx.beginPath();
         ctx.rect(this.x, this.y, this.length, this.thickness);
@@ -39,7 +41,7 @@ function Barriers() {
 let barrier = new Barriers();
 
 //tao 1 mang mau
-let color = ['#C50023', '#F1AF00', '#5BBD2B', '#00B2BF', '#A2007C'];
+let color = ['#C50023', '#F1AF00', '#5BBD2B', '#00B2BF', '#A2007C', '222222', '111111', '000000', 'FF0000', 'EE0000', 'DD0000'];
 
 
 //tao lop bong
@@ -49,6 +51,7 @@ function Balls(x, y, dx, dy, radius) {
     this.dx = dx;
     this.dy = dy;
     this.radius = radius;
+    this.color = color[Math.floor(Math.random() * 4)];
 
     //ve bong
     this.draw = function () {
@@ -56,7 +59,7 @@ function Balls(x, y, dx, dy, radius) {
         ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
         ctx.strokeStyle = "black";
         ctx.stroke();
-        ctx.fillStyle = 'red';
+        ctx.fillStyle = this.color;
         ctx.fill();
     };
 
@@ -82,42 +85,63 @@ function Balls(x, y, dx, dy, radius) {
 
 };
 
-//tao 1 qua bong
-let ballNum1 = new Balls(100, 100, 8, 8, 22);
 
-function gameOver() {
-    if (barrier.y <= ballNum1.y) {
-        cancelAnimationFrame(id);
-        ctx.beginPath();
-        ctx.font = "50px Arial";
-        ctx.fillStyle = "purple";
-        ctx.fillText("Gà vậy luôn :C", innerWidth / 2 - 200, innerHeight / 3);
-        ctx.fill();
+//tao 1 day bong
+let ballArray = [];
 
-    }
+for (let i = 0; i < 3; i++) {
+    let radius = Math.random() * 20 + 8;
+    let x = Math.random() * (innerWidth - radius * 2) + radius;
+    let y = innerHeight / 4;
+    let dx = Math.random() * 8;
+    let dy = Math.random() * 8;
+    ballArray.push(new Balls(x, y, dx, dy, radius))
 }
 
-//hien thi
+
+function gameOver() {
+    for (let i = 0; i < ballArray.length; i++) {
+        if (ballArray[i].y >= barrier.y - barrier.thickness / 2) {
+            cancelAnimationFrame(id);
+            ctx.beginPath();
+            ctx.font = "50px Arial";
+            ctx.fillStyle = "purple";
+            ctx.fillText(playerName + " gà vậy :C", innerWidth / 2 - 200, innerHeight / 3);
+            ctx.fill();
+
+        }
+    }
+
+}
+
 let id;
 
+//hien thi
 function animate() {
     id = requestAnimationFrame(animate);
 
     //xoa tan anh
     ctx.clearRect(0, 0, innerWidth, innerHeight);
+
+    //hien diem so o goc trai
     ctx.font = "25px Verdana";
     ctx.fillText("Score: " + score, 10, 30);
     score++;
-    if (ballNum1.y + ballNum1.radius > barrier.y - barrier.thickness && ballNum1.x > barrier.x && ballNum1.x < barrier.x + barrier.length) {
-        ballNum1.dy = -ballNum1.dy;
-        ballNum1.dx = ballNum1.dx;
+
+    // dieu kien doi huong khi ball va cham voi barrier
+    for (let i = 0; i < ballArray.length; i++) {
+        if (ballArray[i].y + ballArray[i].radius >= barrier.y - barrier.thickness / 2 && ballArray[i].x > barrier.x && ballArray[i].x < barrier.x + barrier.length) {
+            ballArray[i].dy = -ballArray[i].dy;
+        }
     }
 
     //hien thi barrier
     barrier.update();
 
-    //hien thi ballNum1
-    ballNum1.update();
+    //hien thi day bong
+    for (let i = 0; i < ballArray.length; i++) {
+        ballArray[i].update()
+    }
 
     gameOver();
 
@@ -125,5 +149,3 @@ function animate() {
 }
 
 animate();
-
-
