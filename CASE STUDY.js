@@ -81,7 +81,7 @@ function Balls(x, y, dx, dy, radius) {
 };
 
 //tao 1 qua bong
-let ballNum1 = new Balls(100, 100, 8, 8, 30);
+let ballNum1 = new Balls(100, 100, 28, 28, 30);
 
 function gameOver() {
     if (barrier.y <= ballNum1.y) {
