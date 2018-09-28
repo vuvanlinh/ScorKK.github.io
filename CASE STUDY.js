@@ -15,6 +15,9 @@ window.addEventListener("mousemove",
         mouse.x = event.x;
         mouse.y = event.y;
     });
+//tao 1 mang mau
+let color = ['#C50023', '#F1AF00', '#5BBD2B', '#00B2BF', '#A2007C', '222222', '111111', '000000', 'FF0000', 'EE0000', 'DD0000'];
+
 
 // tao lop thanh chan
 function Barriers() {
@@ -22,11 +25,16 @@ function Barriers() {
     this.y = innerHeight - 50;
     this.length = 322;
     this.thickness = 25;
+    this.color = color[Math.floor(Math.random() * 10)];
+
     this.draw = function () {
         ctx.beginPath();
         ctx.rect(this.x, this.y, this.length, this.thickness);
-        ctx.fillStyle = "green";
+        ctx.fillStyle = this.color;
         ctx.fill();
+        ctx.strokeStyle = 'black';
+        ctx.lineJoin = "round";
+        ctx.stroke();
     };
 
     this.update = function () {
@@ -40,9 +48,6 @@ function Barriers() {
 // tao 1 thanh chan
 let barrier = new Barriers();
 
-//tao 1 mang mau
-let color = ['#C50023', '#F1AF00', '#5BBD2B', '#00B2BF', '#A2007C', '222222', '111111', '000000', 'FF0000', 'EE0000', 'DD0000'];
-
 
 //tao lop bong
 function Balls(x, y, dx, dy, radius) {
@@ -51,7 +56,7 @@ function Balls(x, y, dx, dy, radius) {
     this.dx = dx;
     this.dy = dy;
     this.radius = radius;
-    this.color = color[Math.floor(Math.random() * 4)];
+    this.color = color[Math.floor(Math.random() * 10)];
 
     //ve bong
     this.draw = function () {
@@ -93,8 +98,8 @@ for (let i = 0; i < 3; i++) {
     let radius = Math.random() * 20 + 8;
     let x = Math.random() * (innerWidth - radius * 2) + radius;
     let y = innerHeight / 4;
-    let dx = Math.random() * 8;
-    let dy = Math.random() * 8;
+    let dx = Math.random() * 3 + 5;
+    let dy = Math.random() * 3 + 5;
     ballArray.push(new Balls(x, y, dx, dy, radius))
 }
 
