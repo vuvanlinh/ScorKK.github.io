@@ -1,22 +1,3 @@
-let playerName = prompt("Enter your name : ");
-
-let canvas = document.querySelector("canvas");
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-let ctx = canvas.getContext("2d");
-
-let score = 0;
-
-let mouse = {
-    x: undefined,
-    y: undefined
-};
-window.addEventListener("mousemove",
-    function (event) {
-        mouse.x = event.x;
-        mouse.y = event.y;
-    });
-
 // tao 1 thanh chan
 let barrier = new Barriers();
 
@@ -31,7 +12,6 @@ for (let i = 0; i < 3; i++) {
     let dy = Math.random() * 3 + 5;
     ballArray.push(new Balls(x, y, dx, dy, radius))
 }
-
 
 function gameOver() {
     for (let i = 0; i < ballArray.length; i++) {
