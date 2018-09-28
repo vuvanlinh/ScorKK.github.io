@@ -38,7 +38,7 @@ function animate() {
     ctx.clearRect(0, 0, innerWidth, innerHeight);
 
     //hien diem so o goc trai
-    ctx.font = "25px Verdana";
+    ctx.font = "25px Arial";
     ctx.fillText("Score: " + score, 10, 30);
     score++;
 
