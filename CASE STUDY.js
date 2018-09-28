@@ -1,10 +1,11 @@
+let playerName = prompt("Enter your name : ");
+
 let canvas = document.querySelector("canvas");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 let ctx = canvas.getContext("2d");
-let score = 0;
 
-let playerName = prompt("Enter your name : ");
+let score = 0;
 
 let mouse = {
     x: undefined,
@@ -15,9 +16,9 @@ window.addEventListener("mousemove",
         mouse.x = event.x;
         mouse.y = event.y;
     });
+
 //tao 1 mang mau
 let color = ['#C50023', '#F1AF00', '#5BBD2B', '#00B2BF', '#A2007C', '222222', '111111', '000000', 'FF0000', 'EE0000', 'DD0000'];
-
 
 // tao lop thanh chan
 function Barriers() {
@@ -88,8 +89,7 @@ function Balls(x, y, dx, dy, radius) {
         this.draw();
     }
 
-};
-
+}
 
 //tao 1 day bong
 let ballArray = [];
@@ -149,7 +149,6 @@ function animate() {
     }
 
     gameOver();
-
 
 }
 
