@@ -24,8 +24,8 @@ let color = ['#C50023', '#F1AF00', '#5BBD2B', '#00B2BF', '#A2007C', '222222', '1
 function Barriers() {
     this.x = innerWidth - innerWidth / 2 - 200;
     this.y = innerHeight - 50;
-    this.length = 322;
-    this.thickness = 25;
+    this.length = innerWidth/4;
+    this.thickness = 18;
     this.color = color[Math.floor(Math.random() * 10)];
 
     this.draw = function () {
