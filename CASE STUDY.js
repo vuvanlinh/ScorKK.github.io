@@ -37,15 +37,11 @@ function animate() {
     //xoa tan anh
     ctx.clearRect(0, 0, innerWidth, innerHeight);
 
-    //hien diem so o goc trai
-    ctx.font = "25px Arial";
-    ctx.fillText("Score: " + score, 10, 30);
-    score++;
-
     // dieu kien doi huong khi ball va cham voi barrier
     for (let i = 0; i < ballArray.length; i++) {
         if (ballArray[i].y + ballArray[i].radius >= barrier.y - barrier.thickness / 2 && ballArray[i].x > barrier.x && ballArray[i].x < barrier.x + barrier.length) {
             ballArray[i].dy = -ballArray[i].dy;
+            score++;
         }
     }
 
@@ -56,6 +52,8 @@ function animate() {
     for (let i = 0; i < ballArray.length; i++) {
         ballArray[i].update()
     }
+
+    scoreCount();
 
     gameOver();
 
